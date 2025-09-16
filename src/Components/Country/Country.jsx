@@ -1,33 +1,30 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./country.css";
 
-const Country = ({ country, handleVisitedCountries }) => {
-  // console.log(country);
-  const { name, flags, capital, cca2 } = country;
+const Country = ({ country, handleaddtoVisited }) => {
+  // console.log(country)
+  const { name, population, flags, cca2 } = country;
 
-  const [visited, setVisited] = useState(false); //--state for the visited button here;
+  const [visited, setVisited] = useState(false);
 
-  const handleVisited = () => {
+  const handlesetVisited = () => {
     setVisited(!visited);
   };
 
-  // console.log(handleVisitedCountries);
-
   return (
-    <div className={`country ${visited ? "visitedbg" : "not"}`}>
-      <h2>Name: {name.common}</h2>
+    <div className="country">
+      {/* <h2>Country</h2> */}
+      <img src={flags.png} alt="" />
+      <p>Name: {name.common}</p>
+      <p>Popaulation: {population}</p>
+      <p>Code: {cca2}</p>
       <div>
-        <img src={flags.png} alt="" />
-      </div>
-      <p>Capital: {capital}</p>
-      <p>Country-Code: {cca2}</p>
-      <button onClick={() => handleVisitedCountries(country)}>
-        Mark As Visited
-      </button>
-      <br />
-      <div>
-        <button onClick={handleVisited}>{visited ? "Visited" : "Going"}</button>
-        {visited ? "I have visited" : "I want to visit"}
+        <button onClick={() => handleaddtoVisited(country)}>Add to List</button>
+        <br />
+        <button onClick={() => handlesetVisited()}>
+          {visited ? "Visited" : "Going"}
+        </button>
+        {visited ? "Visited This Country" : "Going to Visit"}
       </div>
     </div>
   );
